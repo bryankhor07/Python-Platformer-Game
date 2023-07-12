@@ -2,17 +2,19 @@ import os
 import random
 import math
 import pygame
+# I'm doing all this OS stuff is because we are going to be dynamically loading all of the sprite sheets
+# and the images so we don't have to manually like type out the file names that we want
 from os import listdir
 from os.path import isfile, join
-pygame.init()
+pygame.init() # We need to initialize the py game module.
 
-pygame.display.set_caption("Platformer")
+pygame.display.set_caption("Platformer") # This is setting the caption at the top of the window
 
-WIDTH, HEIGHT = 1000, 800
+WIDTH, HEIGHT = 1000, 800 # Width and height of our screen.
 FPS = 60
-PLAYER_VEL = 5
+PLAYER_VEL = 5 # This is going to be the speed at which my player moves around the screen.
 
-window = pygame.display.set_mode((WIDTH, HEIGHT))
+window = pygame.display.set_mode((WIDTH, HEIGHT)) # This is going to create the PI game window for us.
 
 
 def flip(sprites):
@@ -296,8 +298,11 @@ def main(window):
 
     run = True
     while run:
-        clock.tick(FPS)
+        clock.tick(FPS) # What this line does is ensures that our while loop is going to run 60 frames per second.
 
+        # The first event that we're going to check for is if the user quits the game.
+        # If they quit by quitting, I mean they hit the red ax in the top right hand corner. 
+        # Then we need to stop the event loop and exit our program.
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -319,6 +324,7 @@ def main(window):
     pygame.quit()
     quit()
 
-
+# The reason I have this line right here is so that we only call the main function
+# if we run this file directly. If we don't run this file directly, say we imported something from it, then we won't run the game code.
 if __name__ == "__main__":
     main(window)
